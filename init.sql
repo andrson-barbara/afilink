@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS users (
+    google_id VARCHAR(255) PRIMARY KEY,
+    is_pro BOOLEAN DEFAULT false,
+    daily_usage INT DEFAULT 0,
+    last_reset_date DATE DEFAULT CURRENT_DATE,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);

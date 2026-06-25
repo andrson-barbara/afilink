@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  backend:
+    image: ghcr.io/andrson-barbara/afilink:latest
+    container_name: afilink-backend
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+      - DATABASE_URL=${DATABASE_URL}
+      - STRIPE_WEBHOOK_SECRET=${STRIPE_WEBHOOK_SECRET}
+      - STRIPE_SECRET_KEY=${STRIPE_SECRET_KEY}
+      - PORT=3000
+    networks:
+      - network_public
+    deploy:
+      labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=network_public"
+        - "traefik.http.routers.afilink-api-http.rule=Host(`afilink.andrson.com.br`) && PathPrefix(`/api`)"
+        - "traefik.http.routers.afilink-api-http.entrypoints=web"
+        - "traefik.http.routers.afilink-api-http.service=afilink-api"
+        - "traefik.http.routers.afilink-api.rule=Host(`afilink.andrson.com.br`) && PathPrefix(`/api`)"
+        - "traefik.http.routers.afilink-api.entrypoints=websecure"
+        - "traefik.http.routers.afilink-api.tls.certresolver=letsencryptresolver"
+        - "traefik.http.routers.afilink-api.service=afilink-api"
+        - "traefik.http.services.afilink-api.loadbalancer.server.port=3000"
+    labels:
+        - "traefik.enable=true"
+        - "traefik.docker.network=network_public"
+        - "traefik.http.routers.afilink-api-http.rule=Host(`afilink.andrson.com.br`) && PathPrefix(`/api`)"
+        - "traefik.http.routers.afilink-api-http.entrypoints=web"
+        - "traefik.http.routers.afilink-api-http.service=afilink-api"
+        - "traefik.http.routers.afilink-api.rule=Host(`afilink.andrson.com.br`) && PathPrefix(`/api`)"
+        - "traefik.http.routers.afilink-api.entrypoints=websecure"
+        - "traefik.http.routers.afilink-api.tls.certresolver=letsencryptresolver"
+        - "traefik.http.routers.afilink-api.service=afilink-api"
+        - "traefik.http.services.afilink-api.loadbalancer.server.port=3000"
+
+networks:
+  network_public:
+    external: true
