@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Afi-link Pro | Automação 1-Click para Afiliados</title>
+  <style>
+    /* VARIABLES & RESET */
+    :root {
+      --bg-base: #020617; /* Deep Slate 950 */
+      --bg-surface: #0f172a; /* Slate 900 */
+      --bg-surface-light: #1e293b; /* Slate 800 */
+      --text-main: #f8fafc; /* Slate 50 */
+      --text-muted: #94a3b8; /* Slate 400 */
+      --neon-green: #10b981; /* Emerald 500 */
+      --neon-green-hover: #059669; /* Emerald 600 */
+      --neon-gold: #fbbf24; /* Amber 400 */
+      --danger: #ef4444; /* Red 500 */
+      --border-raw: #334155; /* Slate 700 */
+      
+      --radius-sharp: 2px;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, sans-serif; }
+
+    body {
+      background-color: var(--bg-base);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+      /* Grain Texture Overlay */
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+    }
+
+    a { text-decoration: none; color: inherit; }
+    button { border: none; background: none; cursor: pointer; font-family: inherit; }
+
+    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+
+    /* UTILITIES */
+    .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+    .reveal.active { opacity: 1; transform: translateY(0); }
+    .delay-1 { transition-delay: 0.1s; }
+    .delay-2 { transition-delay: 0.2s; }
+    
+    .sharp-border { border: 1px solid var(--border-raw); border-radius: var(--radius-sharp); }
+    .highlight-text { color: var(--neon-green); }
+
+    /* MARQUEE (Social Proof) */
+    .marquee-wrapper {
+      background: var(--neon-green);
+      color: #020617;
+      padding: 8px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      font-weight: 700;
+      font-size: 13px;
+      letter-spacing: 0.5px;
+      border-bottom: 2px solid #000;
+    }
+    .marquee-content {
+      display: inline-block;
+      animation: marquee 20s linear infinite;
+    }
+    .marquee-content span { margin-right: 40px; }
+    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    /* NAVBAR */
+    .navbar {
+      padding: 20px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(2, 6, 23, 0.8);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-raw);
+    }
+    .navbar .container { display: flex; justify-content: space-between; align-items: center; }
+    .logo { font-size: 20px; font-weight: 800; display: flex; align-items: center; gap: 8px; letter-spacing: -0.5px; }
+    .nav-btn {
+      color: var(--text-main); font-weight: 600; font-size: 14px;
+      border: 1px solid var(--border-raw); padding: 8px 16px; border-radius: var(--radius-sharp);
+      transition: all 0.2s;
+    }
+    .nav-btn:hover { background: var(--text-main); color: var(--bg-base); }
+
+    /* MASSIVE HERO */
+    .hero {
+      padding: 100px 0 60px;
+      position: relative;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 0.8fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .tagline {
+      display: inline-block;
+      border: 1px solid var(--neon-gold);
+      color: var(--neon-gold);
+      padding: 6px 12px;
+      font-size: 13px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      margin-bottom: 32px;
+      border-radius: var(--radius-sharp);
+    }
+    .hero h1 {
+      font-size: clamp(48px, 6vw, 76px); /* Massive Typography */
+      line-height: 1.05;
+      font-weight: 900;
+      letter-spacing: -2px;
+      margin-bottom: 24px;
+    }
+    .hero p {
+      font-size: 20px;
+      color: var(--text-muted);
+      margin-bottom: 48px;
+      max-width: 600px;
+      font-weight: 400;
+    }
+    .cta-group { display: flex; gap: 16px; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      padding: 18px 32px; font-size: 16px; font-weight: 700;
+      border-radius: var(--radius-sharp); transition: all 0.2s; text-transform: uppercase; letter-spacing: 0.5px;
+    }
+    .btn-primary {
+      background: var(--neon-green); color: #020617;
+      box-shadow: 4px 4px 0 #000; /* Neo-Brutalist shadow */
+    }
+    .btn-primary:hover {
+      transform: translate(2px, 2px); box-shadow: 2px 2px 0 #000;
+    }
+    .btn-outline {
+      background: transparent; color: var(--text-main); border: 2px solid var(--border-raw);
+    }
+    .btn-outline:hover { background: var(--bg-surface-light); }
+    .cta-hint { display: block; margin-top: 12px; font-size: 13px; color: var(--text-muted); }
+
+    .hero-media {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-raw);
+      border-radius: var(--radius-sharp);
+      height: 480px;
+      box-shadow: -10px 10px 0 rgba(16, 185, 129, 0.1); /* Emerald tint shadow */
+      position: relative;
+      overflow: hidden;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    /* THE OUTPUT PROOF (WhatsApp Simulation) */
+    .proof-section { padding: 40px 0 100px; }
+    .proof-box {
+      background: var(--bg-surface);
+      border: 1px solid var(--border-raw);
+      padding: 40px;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      border-radius: var(--radius-sharp);
+    }
+    .proof-text h3 { font-size: 32px; margin-bottom: 16px; font-weight: 800; letter-spacing: -1px; }
+    .proof-text p { color: var(--text-muted); font-size: 18px; margin-bottom: 24px; }
+    
+    .chat-bubble {
+      background: #075e54; /* WA Dark */
+      border: 1px solid #128c7e;
+      padding: 20px;
+      border-radius: 0 16px 16px 16px;
+      width: 100%; max-width: 400px;
+      font-size: 15px; color: #fff;
+      box-shadow: 10px 10px 0 rgba(0,0,0,0.5);
+    }
+    .chat-link { color: #60a5fa; text-decoration: underline; }
+
+    /* HOW IT WORKS (Fragmented Grid) */
+    .how-it-works { padding: 100px 0; background: var(--bg-surface); border-top: 1px solid var(--border-raw); }
+    .section-header { text-align: left; margin-bottom: 60px; max-width: 600px; }
+    .section-header h2 { font-size: 40px; font-weight: 800; letter-spacing: -1.5px; line-height: 1.1; }
+    .section-header p { color: var(--text-muted); margin-top: 16px; font-size: 18px; }
+    
+    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+    .step-card {
+      background: var(--bg-base); border: 1px solid var(--border-raw); padding: 40px 32px;
+      position: relative; transition: all 0.3s;
+    }
+    .step-card:hover { border-color: var(--neon-green); transform: translateY(-5px); }
+    .step-number { font-size: 80px; font-weight: 900; color: rgba(255,255,255,0.05); position: absolute; top: 10px; right: 20px; line-height: 1; }
+    .step-card h3 { font-size: 22px; margin-bottom: 12px; position: relative; z-index: 2; }
+    .step-card p { color: var(--text-muted); position: relative; z-index: 2; }
+
+    /* SECURITY BANNERS */
+    .security { padding: 80px 0; background: var(--neon-green); color: #020617; }
+    .security-inner { display: grid; grid-template-columns: auto 1fr; gap: 32px; align-items: center; }
+    .security-inner h2 { font-size: 32px; font-weight: 900; letter-spacing: -1px; margin-bottom: 8px; }
+    .security-inner p { font-size: 18px; font-weight: 500; }
+    .check-list { display: flex; gap: 24px; margin-top: 24px; font-weight: 700; flex-wrap: wrap; }
+    .check-list span { display: flex; align-items: center; gap: 8px; }
+
+    /* PRICING */
+    .pricing { padding: 120px 0; }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 40px; }
+    .price-card {
+      background: var(--bg-surface); border: 1px solid var(--border-raw); padding: 40px;
+      display: flex; flex-direction: column; position: relative;
+    }
+    .price-card.pro { border-color: var(--neon-green); box-shadow: 0 0 40px rgba(16, 185, 129, 0.05); }
+    .price-card.lifetime { border-color: var(--neon-gold); }
+    
+    .tag {
+      position: absolute; top: -14px; left: 24px; padding: 6px 12px;
+      font-size: 11px; font-weight: 800; text-transform: uppercase; letter-spacing: 1px;
+    }
+    .tag-green { background: var(--neon-green); color: #000; }
+    .tag-gold { background: var(--neon-gold); color: #000; box-shadow: 0 0 10px rgba(251, 191, 36, 0.5); animation: pulseGlow 2s infinite; }
+    
+    @keyframes pulseGlow {
+      0% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0.4); }
+      70% { box-shadow: 0 0 0 10px rgba(251, 191, 36, 0); }
+      100% { box-shadow: 0 0 0 0 rgba(251, 191, 36, 0); }
+    }
+
+    .plan-name { font-size: 18px; font-weight: 700; margin-bottom: 16px; color: var(--text-muted); }
+    .plan-price { font-size: 48px; font-weight: 900; margin-bottom: 8px; letter-spacing: -2px; }
+    .plan-price span { font-size: 16px; color: var(--text-muted); font-weight: 500; letter-spacing: 0; }
+    .plan-desc { color: var(--text-muted); font-size: 14px; margin-bottom: 32px; min-height: 42px; }
+    
+    .feature-list { list-style: none; margin-bottom: 40px; flex-grow: 1; }
+    .feature-list li { display: flex; align-items: flex-start; gap: 12px; margin-bottom: 16px; font-size: 15px; }
+    .feature-list li svg { color: var(--neon-green); flex-shrink: 0; margin-top: 2px; }
+    
+    .btn-full { width: 100%; }
+
+    /* FAQ */
+    .faq { padding: 100px 0; background: var(--bg-surface); border-top: 1px solid var(--border-raw); }
+    .faq-list { max-width: 800px; margin: 60px auto 0; }
+    .faq-item { border-bottom: 1px solid var(--border-raw); }
+    .faq-question {
+      width: 100%; text-align: left; padding: 24px 0; background: none; color: var(--text-main);
+      font-size: 18px; font-weight: 600; display: flex; justify-content: space-between; align-items: center;
+    }
+    .faq-item.active .faq-question { color: var(--neon-green); }
+    .faq-icon { transition: transform 0.3s; }
+    .faq-item.active .faq-icon { transform: rotate(180deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.3s ease-out; color: var(--text-muted); }
+    .faq-answer-inner { padding-bottom: 24px; font-size: 16px; line-height: 1.6; }
+
+    /* FOOTER */
+    .footer { padding: 40px 0; border-top: 1px solid var(--border-raw); text-align: center; color: var(--text-muted); font-size: 14px; }
+    .footer-links { margin-top: 16px; display: flex; justify-content: center; gap: 24px; }
+    .footer-links a:hover { color: var(--text-main); }
+
+    /* RESPONSIVE */
+    @media (max-width: 992px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+      .hero h1 { margin-left: auto; margin-right: auto; }
+      .tagline { margin-left: auto; margin-right: auto; }
+      .cta-group { justify-content: center; }
+      .proof-box { flex-direction: column; text-align: center; }
+      .grid-3, .pricing-grid { grid-template-columns: 1fr; }
+      .section-header { text-align: center; margin: 0 auto 40px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Social Proof Marquee -->
+  <div class="marquee-wrapper">
+    <div class="marquee-content">
+      <span>🔥 +1.200 afiliados já automatizaram seus links esta semana</span>
+      <span>⏱️ Mais de 50.000 horas de trabalho braçal economizadas</span>
+      <span>💰 Geração de links 10x mais rápida</span>
+      <span>🚀 Chega de criar copies manualmente no WhatsApp</span>
+      <!-- Duplicate for loop -->
+      <span>🔥 +1.200 afiliados já automatizaram seus links esta semana</span>
+      <span>⏱️ Mais de 50.000 horas de trabalho braçal economizadas</span>
+      <span>💰 Geração de links 10x mais rápida</span>
+      <span>🚀 Chega de criar copies manualmente no WhatsApp</span>
+    </div>
+  </div>
+
+  <!-- Navbar -->
+  <nav class="navbar">
+    <div class="container">
+      <div class="logo">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="color: var(--neon-green)"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+        AFI-LINK
+      </div>
+      <a href="#" class="nav-btn">Área de Membros</a>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-content reveal">
+        <span class="tagline">O fim do trabalho braçal</span>
+        <h1>Gere, Encurte e Copie Links em <span class="highlight-text">Exatamente 1 Clique.</span></h1>
+        <p>Pare de perder horas abrindo painéis e montando textos manuais para o WhatsApp. O Afi-link Pro escala seu garimpo na Amazon e Mercado Livre.</p>
+        
+        <div class="cta-group">
+          <div>
+            <button class="btn btn-primary" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">Testar Grátis Agora</button>
+            <span class="cta-hint">Liberado 5 links/dia na hora.</span>
+          </div>
+          <div>
+            <button class="btn btn-outline" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">Ver Planos Pro</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="hero-media reveal delay-1">
+        <svg xmlns="http://www.w3.org/2000/svg" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--border-raw)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- Simulation / Proof Output -->
+  <section class="proof-section">
+    <div class="container">
+      <div class="proof-box reveal">
+        <div class="proof-text">
+          <h3>Nós fazemos o <span class="highlight-text">Copywriting</span> por você.</h3>
+          <p>Você gasta 3 minutos por link? Se fizer 20 por dia, perde 1 hora de vida copiando e colando.</p>
+          <p style="font-size: 15px;">Nossa inteligência raspa o nome do produto, o preço da oferta e entrega a mensagem pronta para converter.</p>
+        </div>
+        <div class="chat-bubble">
+          <strong>🔥 JBL, Caixa de Som Bluetooth Go 3 por R$ 289,73.</strong><br><br>
+          Garanta descontos de 30%, 50% ou 80% OFF clicando aqui:<br>
+          <a href="#" class="chat-link">https://amzn.to/3XYz9a</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- How It Works -->
+  <section class="how-it-works">
+    <div class="container">
+      <div class="section-header reveal">
+        <h2>Sua Única Tarefa é Escolher o Produto. O Resto é Com a Gente.</h2>
+        <p>Nada de integrações complexas ou APIs oficiais impossíveis de aprovar.</p>
+      </div>
+      
+      <div class="grid-3">
+        <div class="step-card reveal">
+          <span class="step-number">01</span>
+          <h3>Instale e Navegue</h3>
+          <p>Adicione a extensão. Acesse a Amazon ou Mercado Livre normalmente. Você verá um novo botão mágico injetado em cada oferta.</p>
+        </div>
+        <div class="step-card reveal delay-1">
+          <span class="step-number">02</span>
+          <h3>Clique e Enfileire</h3>
+          <p>Achou uma oferta boa? Basta clicar no botão "Link de Afiliado". Siga navegando livremente e adicionando produtos na fila.</p>
+        </div>
+        <div class="step-card reveal delay-2">
+          <span class="step-number">03</span>
+          <h3>Copie e Venda</h3>
+          <p>Abra a extensão e clique em Gerar. Em segundos ela pega o shortlink oficial e te entrega textos altamente conversivos.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Security -->
+  <section class="security">
+    <div class="container">
+      <div class="security-inner reveal">
+        <div>
+          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+        </div>
+        <div>
+          <h2>Risco ZERO de Bloqueio.</h2>
+          <p>O Afi-link Pro foi construído com inteligência que <strong>simula a navegação humana</strong> na sua própria sessão. Não violamos regras, não fazemos requisições obscuras.</p>
+          <div class="check-list">
+            <span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Usa sua própria conta</span>
+            <span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Respeita SiteStripe/ML</span>
+            <span><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Links 100% autênticos</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Pricing -->
+  <section id="pricing" class="pricing">
+    <div class="container">
+      <div class="section-header reveal" style="margin: 0 auto 60px; text-align: center;">
+        <h2>Quanto vale o tempo do seu trabalho braçal?</h2>
+        <p>Escolha a licença perfeita para automatizar o seu faturamento.</p>
+      </div>
+      
+      <div class="pricing-grid">
+        <!-- Grátis -->
+        <div class="price-card reveal">
+          <div class="plan-name">INICIANTE</div>
+          <div class="plan-price">R$ 0</div>
+          <div class="plan-desc">Teste nossa tecnologia sem risco.</div>
+          <ul class="feature-list">
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> 5 Links por dia</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Integração Amazon e ML</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Copy Automática</li>
+          </ul>
+          <button class="btn btn-outline btn-full">Começar Grátis</button>
+        </div>
+
+        <!-- Pro -->
+        <div class="price-card pro reveal delay-1">
+          <span class="tag tag-green">Menos que um lanche</span>
+          <div class="plan-name" style="color: var(--neon-green)">MENSAL PRO</div>
+          <div class="plan-price">R$ 19,90<span>/mês</span></div>
+          <div class="plan-desc">Tenha um "assistente" trabalhando para você.</div>
+          <ul class="feature-list">
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <strong>Links Ilimitados</strong></li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Integração Amazon e ML</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Copy Automática</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Atualizações inclusas</li>
+          </ul>
+          <a href="[LINK_STRIPE_MENSAL]" class="btn btn-primary btn-full">Assinar Plano PRO</a>
+        </div>
+
+        <!-- Lifetime -->
+        <div class="price-card lifetime reveal delay-2">
+          <span class="tag tag-gold">Lote de Lançamento</span>
+          <div class="plan-name" style="color: var(--neon-gold)">VITALÍCIO</div>
+          <div class="plan-price">R$ 137<span> único</span></div>
+          <div class="plan-desc">Sem mensalidades. O plano se tornará anual em breve.</div>
+          <ul class="feature-list">
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <strong>Acesso Eterno (Ilimitado)</strong></li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Todas integrações futuras</li>
+            <li><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Fim das assinaturas</li>
+          </ul>
+          <a href="[LINK_STRIPE_VITALICIO]" class="btn btn-outline btn-full" style="border-color: var(--neon-gold); color: var(--neon-gold);">Garantir Vitalício</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ -->
+  <section class="faq">
+    <div class="container">
+      <div class="section-header reveal" style="text-align: center; margin: 0 auto;">
+        <h2>Ainda tem dúvidas?</h2>
+      </div>
+      
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <button class="faq-question">
+            Funciona pelo celular?
+            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Não. O Afi-link Pro é uma extensão exclusiva para o navegador Google Chrome no computador (PC ou Mac). Ele foi feito para ser a sua central de produtividade no desktop.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            Preciso gerar chaves de API da Amazon ou Mercado Livre?
+            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">De jeito nenhum! Basta ter a sua conta normal logada no navegador. A extensão faz o trabalho "clicando" no painel visual deles para você em segundo plano.</div>
+          </div>
+        </div>
+
+        <div class="faq-item">
+          <button class="faq-question">
+            O Plano Mensal tem alguma fidelidade?
+            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
+          <div class="faq-answer">
+            <div class="faq-answer-inner">Zero fidelidade. Você assina, usa, e cancela com um clique se quiser. Sem letras miúdas. Mas sabemos que você nunca mais vai querer copiar links na mão.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div>AFI-LINK PRO &copy; 2026. Automatizando seus lucros.</div>
+      <div class="footer-links">
+        <a href="#">Termos de Uso</a>
+        <a href="#">Privacidade</a>
+        <a href="#">Contato</a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // FAQ Accordion
+    document.querySelectorAll('.faq-question').forEach(button => {
+      button.addEventListener('click', () => {
+        const item = button.parentElement;
+        const answer = button.nextElementSibling;
+        
+        document.querySelectorAll('.faq-item').forEach(otherItem => {
+          if (otherItem !== item && otherItem.classList.contains('active')) {
+            otherItem.classList.remove('active');
+            otherItem.querySelector('.faq-answer').style.maxHeight = null;
+          }
+        });
+
+        item.classList.toggle('active');
+        if (item.classList.contains('active')) {
+          answer.style.maxHeight = answer.scrollHeight + 'px';
+        } else {
+          answer.style.maxHeight = null;
+        }
+      });
+    });
+
+    // Reveal Animations using Intersection Observer
+    const revealElements = document.querySelectorAll('.reveal');
+    const revealOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
+    
+    const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+      entries.forEach(entry => {
+        if (!entry.isIntersecting) return;
+        entry.target.classList.add('active');
+        observer.unobserve(entry.target);
+      });
+    }, revealOptions);
+
+    revealElements.forEach(el => revealOnScroll.observe(el));
+  </script>
+</body>
+</html>
