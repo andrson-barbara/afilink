@@ -1,5 +1,6 @@
 require('dotenv').config();
 const express = require('express');
+const path = require('path');
 const cors = require('cors');
 const { Pool } = require('pg');
 const stripe = require('stripe')(process.env.STRIPE_SECRET_KEY);
@@ -116,6 +117,11 @@ app.post('/api/webhook/stripe', express.raw({type: 'application/json'}), async (
   }
 
   res.send();
+});
+
+// Rota: Frontend
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname, 'index.html'));
 });
 
 app.listen(port, () => {
