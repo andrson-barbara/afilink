@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,7 +10,8 @@
     :root {
       --bg-base: #000000;
       --text-main: #ffffff;
-      --text-muted: #a1a1aa; /* Zinc 400 */
+      --text-muted: #a1a1aa;
+      /* Zinc 400 */
       --neon-green: #10b981;
       --neon-green-light: #34d399;
       --neon-gold: #fbbf24;
@@ -19,7 +21,12 @@
       --radius-pill: 9999px;
     }
 
-    * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif; }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
 
     body {
       background-color: var(--bg-base);
@@ -29,20 +36,40 @@
       position: relative;
     }
 
-    a { text-decoration: none; color: inherit; }
-    button { border: none; background: none; cursor: pointer; font-family: inherit; }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-    .container { width: 100%; max-width: 1200px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 10; }
+    button {
+      border: none;
+      background: none;
+      cursor: pointer;
+      font-family: inherit;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 24px;
+      position: relative;
+      z-index: 10;
+    }
 
     /* LIQUID ORBS BACKGROUND */
     .bg-orbs {
       position: fixed;
-      top: 0; left: 0; right: 0; bottom: 0;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
       z-index: 0;
       overflow: hidden;
       pointer-events: none;
       background: var(--bg-base);
     }
+
     .orb {
       position: absolute;
       border-radius: 50%;
@@ -50,45 +77,74 @@
       opacity: 0.6;
       animation: float 20s infinite ease-in-out alternate;
     }
+
     .orb-1 {
-      top: -10%; left: -10%;
-      width: 60vw; height: 60vw;
-      background: radial-gradient(circle, rgba(16,185,129,0.4) 0%, rgba(0,0,0,0) 70%);
+      top: -10%;
+      left: -10%;
+      width: 60vw;
+      height: 60vw;
+      background: radial-gradient(circle, rgba(16, 185, 129, 0.4) 0%, rgba(0, 0, 0, 0) 70%);
       animation-delay: 0s;
     }
+
     .orb-2 {
-      bottom: -20%; right: -10%;
-      width: 70vw; height: 70vw;
-      background: radial-gradient(circle, rgba(59,130,246,0.3) 0%, rgba(0,0,0,0) 70%); /* Deep ocean blue */
+      bottom: -20%;
+      right: -10%;
+      width: 70vw;
+      height: 70vw;
+      background: radial-gradient(circle, rgba(59, 130, 246, 0.3) 0%, rgba(0, 0, 0, 0) 70%);
+      /* Deep ocean blue */
       animation-delay: -5s;
     }
+
     .orb-3 {
-      top: 30%; left: 40%;
-      width: 40vw; height: 40vw;
-      background: radial-gradient(circle, rgba(251,191,36,0.15) 0%, rgba(0,0,0,0) 70%);
+      top: 30%;
+      left: 40%;
+      width: 40vw;
+      height: 40vw;
+      background: radial-gradient(circle, rgba(251, 191, 36, 0.15) 0%, rgba(0, 0, 0, 0) 70%);
       animation-delay: -10s;
     }
 
     @keyframes float {
-      0% { transform: translate(0, 0) scale(1); }
-      100% { transform: translate(5%, 10%) scale(1.1); }
+      0% {
+        transform: translate(0, 0) scale(1);
+      }
+
+      100% {
+        transform: translate(5%, 10%) scale(1.1);
+      }
     }
 
     /* UTILITIES */
-    .reveal { opacity: 0; transform: translateY(40px); transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); }
-    .reveal.active { opacity: 1; transform: translateY(0); }
-    .delay-1 { transition-delay: 0.15s; }
-    .delay-2 { transition-delay: 0.3s; }
-    
-    .glass-panel { 
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: all 1s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .delay-1 {
+      transition-delay: 0.15s;
+    }
+
+    .delay-2 {
+      transition-delay: 0.3s;
+    }
+
+    .glass-panel {
       background: var(--glass-bg);
       backdrop-filter: blur(40px);
       -webkit-backdrop-filter: blur(40px);
       border: 1px solid var(--glass-border);
       border-radius: var(--radius-premium);
-      box-shadow: inset 0 1px 0 rgba(255,255,255,0.1), 0 20px 40px rgba(0,0,0,0.4);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.1), 0 20px 40px rgba(0, 0, 0, 0.4);
     }
-    
+
     .gradient-text {
       background: linear-gradient(135deg, #fff 0%, #a1a1aa 100%);
       -webkit-background-clip: text;
@@ -96,7 +152,7 @@
       background-clip: text;
       color: transparent;
     }
-    
+
     .gradient-text-green {
       background: linear-gradient(135deg, var(--neon-green-light) 0%, var(--neon-green) 100%);
       -webkit-background-clip: text;
@@ -121,51 +177,90 @@
       position: relative;
       z-index: 100;
     }
+
     .marquee-content {
       display: inline-block;
       animation: marquee 30s linear infinite;
     }
-    .marquee-content span { margin-right: 40px; color: var(--text-muted); }
-    .marquee-content span strong { color: #fff; }
-    @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+    .marquee-content span {
+      margin-right: 40px;
+      color: var(--text-muted);
+    }
+
+    .marquee-content span strong {
+      color: #fff;
+    }
+
+    @keyframes marquee {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
 
     /* NAVBAR */
     .navbar {
-      padding: 24px 0;
+      padding: 16px 0;
       position: sticky;
       top: 0;
       z-index: 100;
-      background: linear-gradient(to bottom, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0) 100%);
+      background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8) 0%, rgba(0, 0, 0, 0) 100%);
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
       -webkit-mask-image: linear-gradient(to bottom, black 60%, transparent 100%);
     }
-    .navbar .container { display: flex; justify-content: space-between; align-items: center; }
-    .logo { font-size: 20px; font-weight: 700; display: flex; align-items: center; gap: 8px; letter-spacing: -0.5px; }
+
+    .navbar .container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .logo {
+      font-size: 20px;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      letter-spacing: -0.5px;
+    }
+
     .nav-btn {
-      color: var(--text-main); font-weight: 500; font-size: 14px;
+      color: var(--text-main);
+      font-weight: 500;
+      font-size: 14px;
       background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1); 
-      padding: 10px 20px; 
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      padding: 10px 20px;
       border-radius: var(--radius-pill);
       transition: all 0.3s ease;
       backdrop-filter: blur(10px);
     }
-    .nav-btn:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2); }
+
+    .nav-btn:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
 
     /* MASSIVE HERO */
     .hero {
-      padding: 120px 0 80px;
+      padding: 40px 0 80px;
       position: relative;
       z-index: 10;
     }
+
     .hero-grid {
       display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
+      grid-template-columns: 1fr 1.25fr;
       gap: 60px;
       align-items: center;
     }
+
     .tagline {
       display: inline-flex;
       align-items: center;
@@ -180,63 +275,98 @@
       margin-bottom: 32px;
       backdrop-filter: blur(10px);
     }
+
     .tagline::before {
       content: '';
       display: block;
-      width: 8px; height: 8px;
+      width: 8px;
+      height: 8px;
       background: var(--neon-green);
       border-radius: 50%;
       box-shadow: 0 0 10px var(--neon-green);
     }
+
     .hero h1 {
-      font-size: clamp(56px, 6vw, 84px);
+      font-size: clamp(40px, 5vw, 64px);
       line-height: 1.05;
       font-weight: 700;
-      letter-spacing: -3px;
+      letter-spacing: -2px;
       margin-bottom: 24px;
     }
+
     .hero p {
-      font-size: 20px;
+      font-size: 18px;
       color: var(--text-muted);
-      margin-bottom: 48px;
+      margin-bottom: 32px;
       max-width: 540px;
       font-weight: 400;
       line-height: 1.5;
     }
-    .cta-group { display: flex; gap: 16px; flex-wrap: wrap; }
+
+    .cta-group {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
     .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      padding: 18px 36px; font-size: 16px; font-weight: 600;
-      border-radius: var(--radius-pill); transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 18px 36px;
+      font-size: 16px;
+      font-weight: 600;
+      border-radius: var(--radius-pill);
+      transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
       cursor: pointer;
     }
+
     .btn-primary {
-      background: #fff; color: #000;
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.1), 0 8px 24px rgba(255,255,255,0.15);
+      background: #fff;
+      color: #000;
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.1), 0 8px 24px rgba(255, 255, 255, 0.15);
     }
+
     .btn-primary:hover {
       transform: scale(1.02);
-      box-shadow: 0 0 0 1px rgba(255,255,255,0.2), 0 12px 32px rgba(255,255,255,0.25);
+      box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.2), 0 12px 32px rgba(255, 255, 255, 0.25);
     }
+
     .btn-glass {
-      background: rgba(255, 255, 255, 0.05); color: #fff;
+      background: rgba(255, 255, 255, 0.05);
+      color: #fff;
       border: 1px solid rgba(255, 255, 255, 0.1);
       backdrop-filter: blur(20px);
     }
-    .btn-glass:hover { background: rgba(255, 255, 255, 0.1); border-color: rgba(255, 255, 255, 0.2); }
-    .cta-hint { display: block; margin-top: 16px; font-size: 14px; color: var(--text-muted); padding-left: 16px; }
+
+    .btn-glass:hover {
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.2);
+    }
+
+    .cta-hint {
+      display: block;
+      margin-top: 16px;
+      font-size: 14px;
+      color: var(--text-muted);
+      padding-left: 16px;
+    }
 
     .hero-media {
-      height: 520px;
-      display: flex; align-items: center; justify-content: center;
+      aspect-ratio: 16 / 9;
+      height: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       position: relative;
     }
+
     .hero-media::before {
       content: '';
       position: absolute;
       inset: -1px;
       border-radius: var(--radius-premium);
-      background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0) 100%);
+      background: linear-gradient(135deg, rgba(255, 255, 255, 0.2) 0%, rgba(255, 255, 255, 0) 100%);
       z-index: -1;
       mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
       -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
@@ -246,36 +376,65 @@
     }
 
     /* THE OUTPUT PROOF (WhatsApp Simulation) */
-    .proof-section { padding: 60px 0 100px; position: relative; z-index: 10; }
+    .proof-section {
+      padding: 60px 0 100px;
+      position: relative;
+      z-index: 10;
+    }
+
     .proof-box {
       padding: 64px;
       display: flex;
       align-items: center;
       gap: 60px;
     }
-    .proof-text h3 { font-size: 36px; margin-bottom: 20px; font-weight: 700; letter-spacing: -1.5px; }
-    .proof-text p { color: var(--text-muted); font-size: 18px; margin-bottom: 24px; line-height: 1.6; }
-    
+
+    .proof-text h3 {
+      font-size: 36px;
+      margin-bottom: 20px;
+      font-weight: 700;
+      letter-spacing: -1.5px;
+    }
+
+    .proof-text p {
+      color: var(--text-muted);
+      font-size: 18px;
+      margin-bottom: 24px;
+      line-height: 1.6;
+    }
+
     .chat-bubble-container {
       position: relative;
-      width: 100%; max-width: 420px;
+      width: 100%;
+      max-width: 420px;
     }
+
     .chat-bubble {
-      background: rgba(16, 185, 129, 0.15); /* Emerald tint */
+      background: rgba(16, 185, 129, 0.15);
+      /* Emerald tint */
       backdrop-filter: blur(20px);
       -webkit-backdrop-filter: blur(20px);
       border: 1px solid rgba(16, 185, 129, 0.3);
       padding: 24px;
       border-radius: 20px 20px 20px 4px;
-      font-size: 16px; color: #fff;
-      box-shadow: 0 20px 40px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.2);
+      font-size: 16px;
+      color: #fff;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.2);
     }
-    .chat-link { color: var(--neon-green-light); text-decoration: underline; font-weight: 500; }
+
+    .chat-link {
+      color: var(--neon-green-light);
+      text-decoration: underline;
+      font-weight: 500;
+    }
+
     .chat-glow {
       position: absolute;
-      top: 50%; left: 50%;
+      top: 50%;
+      left: 50%;
       transform: translate(-50%, -50%);
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 100%;
       background: var(--neon-green);
       filter: blur(60px);
       opacity: 0.15;
@@ -284,116 +443,385 @@
     }
 
     /* HOW IT WORKS (Fragmented Grid) */
-    .how-it-works { padding: 120px 0; position: relative; z-index: 10; }
-    .section-header { text-align: left; margin-bottom: 80px; max-width: 640px; }
-    .section-header h2 { font-size: 48px; font-weight: 700; letter-spacing: -2px; line-height: 1.1; margin-bottom: 20px; }
-    .section-header p { color: var(--text-muted); font-size: 20px; }
-    
-    .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; }
+    .how-it-works {
+      padding: 120px 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    .section-header {
+      text-align: left;
+      margin-bottom: 80px;
+      max-width: 640px;
+    }
+
+    .section-header h2 {
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: -2px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .section-header p {
+      color: var(--text-muted);
+      font-size: 20px;
+    }
+
+    .grid-3 {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+
     .step-card {
       padding: 48px 40px;
-      position: relative; transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+      transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
       overflow: hidden;
     }
-    .step-card:hover { 
+
+    .step-card:hover {
       transform: translateY(-8px);
       background: rgba(255, 255, 255, 0.05);
       border-color: rgba(255, 255, 255, 0.2);
     }
-    .step-number { font-size: 120px; font-weight: 700; color: rgba(255,255,255,0.03); position: absolute; top: -10px; right: 10px; line-height: 1; pointer-events: none; }
-    .step-card h3 { font-size: 24px; margin-bottom: 16px; position: relative; z-index: 2; font-weight: 600; }
-    .step-card p { color: var(--text-muted); position: relative; z-index: 2; font-size: 16px; line-height: 1.6; }
+
+    .step-number {
+      font-size: 120px;
+      font-weight: 700;
+      color: rgba(255, 255, 255, 0.03);
+      position: absolute;
+      top: -10px;
+      right: 10px;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .step-card h3 {
+      font-size: 24px;
+      margin-bottom: 16px;
+      position: relative;
+      z-index: 2;
+      font-weight: 600;
+    }
+
+    .step-card p {
+      color: var(--text-muted);
+      position: relative;
+      z-index: 2;
+      font-size: 16px;
+      line-height: 1.6;
+    }
 
     /* PRICING */
-    .pricing { padding: 120px 0 160px; position: relative; z-index: 10; }
-    .pricing-header { text-align: center; margin: 0 auto 80px; max-width: 700px; }
-    .pricing-header h2 { font-size: 48px; font-weight: 700; letter-spacing: -2px; line-height: 1.1; margin-bottom: 20px; }
-    .pricing-header p { color: var(--text-muted); font-size: 20px; }
-    
-    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 32px; margin-top: 40px; align-items: center; }
+    .pricing {
+      padding: 120px 0 160px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .pricing-header {
+      text-align: center;
+      margin: 0 auto 80px;
+      max-width: 700px;
+    }
+
+    .pricing-header h2 {
+      font-size: 48px;
+      font-weight: 700;
+      letter-spacing: -2px;
+      line-height: 1.1;
+      margin-bottom: 20px;
+    }
+
+    .pricing-header p {
+      color: var(--text-muted);
+      font-size: 20px;
+    }
+
+    .pricing-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 40px;
+      align-items: center;
+    }
+
     .price-card {
       padding: 48px 40px;
-      display: flex; flex-direction: column; position: relative;
+      display: flex;
+      flex-direction: column;
+      position: relative;
       height: 100%;
     }
-    .price-card.pro { 
+
+    .price-card.pro {
       background: rgba(255, 255, 255, 0.06);
       border: 1px solid rgba(255, 255, 255, 0.2);
       transform: scale(1.05);
       z-index: 2;
     }
+
     .price-card.pro::before {
       content: '';
       position: absolute;
-      top: -1px; left: -1px; right: -1px; bottom: -1px;
+      top: -1px;
+      left: -1px;
+      right: -1px;
+      bottom: -1px;
       border-radius: inherit;
-      background: linear-gradient(135deg, rgba(16,185,129,0.4), rgba(59,130,246,0.4));
+      background: linear-gradient(135deg, rgba(16, 185, 129, 0.4), rgba(59, 130, 246, 0.4));
       z-index: -1;
       filter: blur(20px);
       opacity: 0.5;
     }
-    
+
     .tag {
-      position: absolute; top: -14px; left: 50%; transform: translateX(-50%); padding: 6px 16px;
-      font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+      position: absolute;
+      top: -14px;
+      left: 50%;
+      transform: translateX(-50%);
+      padding: 6px 16px;
+      font-size: 12px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 1px;
       border-radius: var(--radius-pill);
       white-space: nowrap;
     }
-    .tag-pro { background: #fff; color: #000; box-shadow: 0 0 20px rgba(255,255,255,0.4); }
-    
-    .plan-name { font-size: 16px; font-weight: 500; margin-bottom: 16px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase; }
-    .price-card.pro .plan-name { color: #fff; }
-    .plan-price { font-size: 56px; font-weight: 700; margin-bottom: 8px; letter-spacing: -2px; }
-    .plan-price span { font-size: 18px; color: var(--text-muted); font-weight: 500; letter-spacing: 0; }
-    .plan-desc { color: var(--text-muted); font-size: 15px; margin-bottom: 40px; min-height: 48px; }
-    
-    .feature-list { list-style: none; margin-bottom: 48px; flex-grow: 1; }
-    .feature-list li { display: flex; align-items: flex-start; gap: 16px; margin-bottom: 20px; font-size: 16px; color: #ddd; }
-    .feature-list li svg { color: var(--text-main); flex-shrink: 0; margin-top: 2px; width: 20px; height: 20px; }
-    .price-card.pro .feature-list li svg { color: var(--neon-green-light); }
-    
-    .btn-full { width: 100%; }
+
+    .tag-pro {
+      background: #fff;
+      color: #000;
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.4);
+    }
+
+    .plan-name {
+      font-size: 16px;
+      font-weight: 500;
+      margin-bottom: 16px;
+      color: var(--text-muted);
+      letter-spacing: 1px;
+      text-transform: uppercase;
+    }
+
+    .price-card.pro .plan-name {
+      color: #fff;
+    }
+
+    .plan-price {
+      font-size: 56px;
+      font-weight: 700;
+      margin-bottom: 8px;
+      letter-spacing: -2px;
+    }
+
+    .plan-price span {
+      font-size: 18px;
+      color: var(--text-muted);
+      font-weight: 500;
+      letter-spacing: 0;
+    }
+
+    .plan-desc {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 40px;
+      min-height: 48px;
+    }
+
+    .feature-list {
+      list-style: none;
+      margin-bottom: 48px;
+      flex-grow: 1;
+    }
+
+    .feature-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 20px;
+      font-size: 16px;
+      color: #ddd;
+    }
+
+    .feature-list li svg {
+      color: var(--text-main);
+      flex-shrink: 0;
+      margin-top: 2px;
+      width: 20px;
+      height: 20px;
+    }
+
+    .price-card.pro .feature-list li svg {
+      color: var(--neon-green-light);
+    }
+
+    .btn-full {
+      width: 100%;
+    }
 
     /* SECURITY */
-    .security { padding: 100px 0; position: relative; z-index: 10; }
-    .security-inner { padding: 48px; display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: center; }
+    .security {
+      padding: 100px 0;
+      position: relative;
+      z-index: 10;
+    }
+
+    .security-inner {
+      padding: 48px;
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 40px;
+      align-items: center;
+    }
 
     /* FAQ */
-    .faq { padding: 120px 0; border-top: 1px solid rgba(255,255,255,0.05); position: relative; z-index: 10; }
-    .faq-list { max-width: 800px; margin: 60px auto 0; }
-    .faq-item { border-bottom: 1px solid rgba(255,255,255,0.1); }
-    .faq-question {
-      width: 100%; text-align: left; padding: 32px 0; background: none; color: var(--text-main);
-      font-size: 20px; font-weight: 500; display: flex; justify-content: space-between; align-items: center;
+    .faq {
+      padding: 120px 0;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      position: relative;
+      z-index: 10;
     }
-    .faq-item.active .faq-question { color: #fff; }
-    .faq-icon { transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1); opacity: 0.5; }
-    .faq-item.active .faq-icon { transform: rotate(180deg); opacity: 1; }
-    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1); color: var(--text-muted); }
-    .faq-answer-inner { padding-bottom: 32px; font-size: 17px; line-height: 1.6; }
+
+    .faq-list {
+      max-width: 800px;
+      margin: 60px auto 0;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .faq-question {
+      width: 100%;
+      text-align: left;
+      padding: 32px 0;
+      background: none;
+      color: var(--text-main);
+      font-size: 20px;
+      font-weight: 500;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .faq-item.active .faq-question {
+      color: #fff;
+    }
+
+    .faq-icon {
+      transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      opacity: 0.5;
+    }
+
+    .faq-item.active .faq-icon {
+      transform: rotate(180deg);
+      opacity: 1;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+      color: var(--text-muted);
+    }
+
+    .faq-answer-inner {
+      padding-bottom: 32px;
+      font-size: 17px;
+      line-height: 1.6;
+    }
 
     /* FOOTER */
-    .footer { padding: 60px 0 40px; border-top: 1px solid rgba(255,255,255,0.05); text-align: center; color: var(--text-muted); font-size: 15px; position: relative; z-index: 10; }
-    .footer-links { margin-top: 24px; display: flex; justify-content: center; gap: 32px; }
-    .footer-links a { transition: color 0.2s; }
-    .footer-links a:hover { color: var(--text-main); }
+    .footer {
+      padding: 60px 0 40px;
+      border-top: 1px solid rgba(255, 255, 255, 0.05);
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 15px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .footer-links {
+      margin-top: 24px;
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+    }
+
+    .footer-links a {
+      transition: color 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--text-main);
+    }
 
     /* RESPONSIVE */
     @media (max-width: 992px) {
-      .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-      .hero h1 { margin-left: auto; margin-right: auto; }
-      .tagline { margin-left: auto; margin-right: auto; }
-      .cta-group { justify-content: center; }
-      .proof-box { flex-direction: column; text-align: center; gap: 40px; padding: 40px; }
-      .grid-3, .pricing-grid { grid-template-columns: 1fr; }
-      .price-card.pro { transform: none; margin: 20px 0; }
-      .section-header { text-align: center; margin: 0 auto 60px; }
-      .hero-media { height: 400px; }
-      .security-inner { grid-template-columns: 1fr; text-align: center; gap: 24px; padding: 32px 24px; }
-      .security-inner .check-list { justify-content: center; }
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+      }
+
+      .hero h1 {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .tagline {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .cta-group {
+        justify-content: center;
+      }
+
+      .proof-box {
+        flex-direction: column;
+        text-align: center;
+        gap: 40px;
+        padding: 40px;
+      }
+
+      .grid-3,
+      .pricing-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .price-card.pro {
+        transform: none;
+        margin: 20px 0;
+      }
+
+      .section-header {
+        text-align: center;
+        margin: 0 auto 60px;
+      }
+
+      .hero-media {
+        height: auto;
+      }
+
+      .security-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        gap: 24px;
+        padding: 32px 24px;
+      }
+
+      .security-inner .check-list {
+        justify-content: center;
+      }
     }
   </style>
 </head>
+
 <body>
 
   <!-- Background Orbs -->
@@ -422,7 +850,12 @@
   <nav class="navbar">
     <div class="container">
       <div class="logo">
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="color: var(--text-main)"><path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path><path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+          stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+          style="color: var(--text-main)">
+          <path d="M10 13a5 5 0 0 0 7.54.54l3-3a5 5 0 0 0-7.07-7.07l-1.72 1.71"></path>
+          <path d="M14 11a5 5 0 0 0-7.54-.54l-3 3a5 5 0 0 0 7.07 7.07l1.71-1.71"></path>
+        </svg>
         AFI-LINK
       </div>
     </div>
@@ -434,21 +867,29 @@
       <div class="hero-content reveal">
         <span class="tagline">O fim do trabalho braçal</span>
         <h1>Gere, Encurte e Copie Links em <span class="gradient-text">1 Clique.</span></h1>
-        <p>Pare de perder horas abrindo painéis e montando textos manuais para o WhatsApp. O Afi-link Pro escala seu garimpo na Amazon e Mercado Livre de forma inteligente e premium.</p>
-        
+        <p>Pare de perder horas abrindo painéis e montando textos manuais para o WhatsApp. O Afi-link Pro escala seu
+          garimpo na Amazon e Mercado Livre de forma inteligente e premium.</p>
+
         <div class="cta-group">
           <div>
-            <button class="btn btn-primary" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">Testar Grátis Agora</button>
+            <button class="btn btn-primary"
+              onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">Testar Grátis
+              Agora</button>
             <span class="cta-hint">Liberado 5 links/dia na hora.</span>
           </div>
           <div>
-            <button class="btn btn-glass" onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">Ver Assinatura Pro</button>
+            <button class="btn btn-glass"
+              onclick="document.getElementById('pricing').scrollIntoView({behavior: 'smooth'})">Ver Assinatura
+              Pro</button>
           </div>
         </div>
       </div>
 
-      <div class="hero-media glass-panel reveal delay-1" style="overflow: hidden; box-shadow: 0 0 40px rgba(0,0,0,0.5);">
-        <video src="https://res.cloudinary.com/signativa/video/upload/v1782724135/Afi-link_Pro_commercial_video_202606290608_u1j1ni.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; opacity: 0.95;"></video>
+      <div class="hero-media glass-panel reveal delay-1"
+        style="overflow: hidden; box-shadow: 0 0 40px rgba(0,0,0,0.5);">
+        <video
+          src="https://res.cloudinary.com/signativa/video/upload/v1782724135/Afi-link_Pro_commercial_video_202606290608_u1j1ni.mp4"
+          autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; opacity: 0.95;"></video>
       </div>
     </div>
   </section>
@@ -460,14 +901,15 @@
         <div class="proof-text">
           <h3 class="gradient-text">Nós fazemos o Copywriting por você.</h3>
           <p>Você gasta 3 minutos por link? Se fizer 20 por dia, perde 1 hora de vida copiando e colando.</p>
-          <p>Nossa inteligência raspa o nome do produto, o preço da oferta e entrega a mensagem pronta para converter, com formatação impecável.</p>
+          <p>Nossa inteligência raspa o nome do produto, o preço da oferta e entrega a mensagem pronta para converter,
+            com formatação impecável.</p>
         </div>
         <div class="chat-bubble-container">
           <div class="chat-glow"></div>
           <div class="chat-bubble">
             <strong>🔥 JBL, Caixa de Som Bluetooth Go 3 por R$ 289,73.</strong><br><br>
             Garanta descontos de 30%, 50% ou 80% OFF clicando aqui:<br>
-            <a href="#" class="chat-link">https://amzn.to/3XYz9a</a>
+            <a href="#" class="chat-link">https://link.amazon/B0h2zkWFG</a>
           </div>
         </div>
       </div>
@@ -479,24 +921,28 @@
     <div class="container">
       <div class="section-header reveal">
         <h2>Sua Única Tarefa é Escolher o Produto. <br><span class="gradient-text">O Resto é Com a Gente.</span></h2>
-        <p>Nada de integrações complexas ou APIs oficiais impossíveis de aprovar. Desenhado para ser invisível e ultra-rápido.</p>
+        <p>Nada de integrações complexas ou APIs oficiais impossíveis de aprovar. Desenhado para ser invisível e
+          ultra-rápido.</p>
       </div>
-      
+
       <div class="grid-3">
         <div class="step-card glass-panel reveal">
           <span class="step-number">01</span>
           <h3>Instale e Navegue</h3>
-          <p>Adicione a extensão. Acesse a Amazon ou Mercado Livre normalmente. Você verá um novo botão mágico injetado com perfeição em cada oferta.</p>
+          <p>Adicione a extensão. Acesse a Amazon ou Mercado Livre normalmente. Você verá um novo botão mágico injetado
+            com perfeição em cada oferta.</p>
         </div>
         <div class="step-card glass-panel reveal delay-1">
           <span class="step-number">02</span>
           <h3>Clique e Enfileire</h3>
-          <p>Achou uma oferta boa? Basta clicar no botão "Link de Afiliado". Siga navegando livremente e adicionando produtos na sua fila premium.</p>
+          <p>Achou uma oferta boa? Basta clicar no botão "Link de Afiliado". Siga navegando livremente e adicionando
+            produtos na sua fila premium.</p>
         </div>
         <div class="step-card glass-panel reveal delay-2">
           <span class="step-number">03</span>
           <h3>Copie e Venda</h3>
-          <p>Abra a extensão e clique em Gerar. Em segundos ela pega o shortlink oficial e te entrega textos altamente conversivos, prontos para uso.</p>
+          <p>Abra a extensão e clique em Gerar. Em segundos ela pega o shortlink oficial e te entrega textos altamente
+            conversivos, prontos para uso.</p>
         </div>
       </div>
     </div>
@@ -507,15 +953,31 @@
     <div class="container">
       <div class="security-inner glass-panel reveal">
         <div>
-          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--neon-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
+          <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none"
+            stroke="var(--neon-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            <polyline points="9 12 11 14 15 10"></polyline>
+          </svg>
         </div>
         <div>
-          <h2 style="font-size: 36px; font-weight: 700; letter-spacing: -1.5px; margin-bottom: 16px;">Risco <span class="gradient-text-green">ZERO</span> de Bloqueio.</h2>
-          <p style="font-size: 18px; color: var(--text-muted); margin-bottom: 24px;">O Afi-link Pro foi construído com inteligência que <strong>simula a navegação humana</strong> na sua própria sessão. Não violamos regras, não fazemos requisições obscuras.</p>
+          <h2 style="font-size: 36px; font-weight: 700; letter-spacing: -1.5px; margin-bottom: 16px;">Risco <span
+              class="gradient-text-green">ZERO</span> de Bloqueio.</h2>
+          <p style="font-size: 18px; color: var(--text-muted); margin-bottom: 24px;">O Afi-link Pro foi construído com
+            inteligência que <strong>simula a navegação humana</strong> na sua própria sessão. Não violamos regras, não
+            fazemos requisições obscuras.</p>
           <div class="check-list" style="display: flex; gap: 24px; flex-wrap: wrap; font-weight: 500;">
-            <span style="display: flex; align-items: center; gap: 8px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--neon-green-light)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Usa sua própria conta</span>
-            <span style="display: flex; align-items: center; gap: 8px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--neon-green-light)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Respeita Amazon e ML</span>
-            <span style="display: flex; align-items: center; gap: 8px;"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--neon-green-light)" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Links 100% autênticos</span>
+            <span style="display: flex; align-items: center; gap: 8px;"><svg width="20" height="20" viewBox="0 0 24 24"
+                fill="none" stroke="var(--neon-green-light)" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg> Usa sua própria conta</span>
+            <span style="display: flex; align-items: center; gap: 8px;"><svg width="20" height="20" viewBox="0 0 24 24"
+                fill="none" stroke="var(--neon-green-light)" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg> Respeita Amazon e ML</span>
+            <span style="display: flex; align-items: center; gap: 8px;"><svg width="20" height="20" viewBox="0 0 24 24"
+                fill="none" stroke="var(--neon-green-light)" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg> Links 100% autênticos</span>
           </div>
         </div>
       </div>
@@ -529,7 +991,7 @@
         <h2>Escolha o plano ideal para a <span class="gradient-text">sua escala.</span></h2>
         <p>Automatize seu faturamento e pare de perder tempo com trabalho braçal.</p>
       </div>
-      
+
       <div class="pricing-grid">
         <!-- Grátis -->
         <div class="price-card glass-panel reveal">
@@ -537,9 +999,15 @@
           <div class="plan-price">R$ 0</div>
           <div class="plan-desc">Teste nossa tecnologia sem risco e sinta a diferença.</div>
           <ul class="feature-list">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> 5 Links por dia</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Integração Amazon e ML</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Copy Automática básica</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg> 5 Links por dia</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg> Integração Amazon e ML</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg> Copy Automática básica</li>
           </ul>
           <button class="btn btn-glass btn-full">Começar Grátis</button>
         </div>
@@ -551,10 +1019,18 @@
           <div class="plan-price">R$ 19,90<span>/mês</span></div>
           <div class="plan-desc">Acesso total. Tenha um assistente virtual trabalhando para você.</div>
           <ul class="feature-list">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> <strong>Links Ilimitados</strong></li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Integração Amazon e ML</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Copy Automática Premium</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Atualizações contínuas</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg> <strong>Links Ilimitados</strong></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg> Integração Amazon e ML</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg> Copy Automática Premium</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg> Atualizações contínuas</li>
           </ul>
           <a href="[LINK_STRIPE_MENSAL]" class="btn btn-primary btn-full">Assinar Mensal PRO</a>
         </div>
@@ -562,14 +1038,22 @@
         <!-- Vitalicio -->
         <div class="price-card glass-panel reveal delay-2" style="opacity: 0.8;">
           <div class="plan-name">VITALÍCIO</div>
-          <div class="plan-price" style="font-size: 40px;">R$ 137<span style="font-size: 14px; display: block; margin-top: 4px;">/pagamento único</span></div>
+          <div class="plan-price" style="font-size: 40px;">R$ 137<span
+              style="font-size: 14px; display: block; margin-top: 4px;">/pagamento único</span></div>
           <div class="plan-desc">Tenha a ferramenta para sempre, sem mensalidades.</div>
           <ul class="feature-list" style="opacity: 0.7;">
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Acesso vitalício</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Todos os benefícios PRO</li>
-            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"></polyline></svg> Suporte básico</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg> Acesso vitalício</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg> Todos os benefícios PRO</li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg> Suporte básico</li>
           </ul>
-          <a href="[LINK_STRIPE_VITALICIO]" class="btn btn-glass btn-full" style="font-size: 14px; padding: 14px 24px;">Garantir Vitalício</a>
+          <a href="[LINK_STRIPE_VITALICIO]" class="btn btn-glass btn-full"
+            style="font-size: 14px; padding: 14px 24px;">Garantir Vitalício</a>
         </div>
       </div>
     </div>
@@ -581,35 +1065,47 @@
       <div class="section-header reveal" style="text-align: center; margin: 0 auto;">
         <h2>Ainda tem dúvidas?</h2>
       </div>
-      
+
       <div class="faq-list reveal">
         <div class="faq-item">
           <button class="faq-question">
             Funciona pelo celular?
-            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
           </button>
           <div class="faq-answer">
-            <div class="faq-answer-inner">Não. O Afi-link Pro é uma extensão exclusiva para o navegador Google Chrome no computador (PC ou Mac). Ele foi feito para ser a sua central de produtividade no desktop.</div>
+            <div class="faq-answer-inner">Não. O Afi-link Pro é uma extensão exclusiva para o navegador Google Chrome no
+              computador (PC ou Mac). Ele foi feito para ser a sua central de produtividade no desktop.</div>
           </div>
         </div>
 
         <div class="faq-item">
           <button class="faq-question">
             Preciso gerar chaves de API da Amazon ou Mercado Livre?
-            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
           </button>
           <div class="faq-answer">
-            <div class="faq-answer-inner">De jeito nenhum! Basta ter a sua conta normal logada no navegador. A extensão faz o trabalho interagindo diretamente com o painel visual deles para você, em segundo plano.</div>
+            <div class="faq-answer-inner">De jeito nenhum! Basta ter a sua conta normal logada no navegador. A extensão
+              faz o trabalho interagindo diretamente com o painel visual deles para você, em segundo plano.</div>
           </div>
         </div>
 
         <div class="faq-item">
           <button class="faq-question">
             Os planos de assinatura possuem fidelidade?
-            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
+            <svg class="faq-icon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+              stroke-width="2">
+              <polyline points="6 9 12 15 18 9"></polyline>
+            </svg>
           </button>
           <div class="faq-answer">
-            <div class="faq-answer-inner">Zero fidelidade. Você assina, usa, e cancela com um clique se quiser. Sem letras miúdas. Mas sabemos que você nunca mais vai querer copiar links manualmente.</div>
+            <div class="faq-answer-inner">Zero fidelidade. Você assina, usa, e cancela com um clique se quiser. Sem
+              letras miúdas. Mas sabemos que você nunca mais vai querer copiar links manualmente.</div>
           </div>
         </div>
       </div>
@@ -629,7 +1125,7 @@
       button.addEventListener('click', () => {
         const item = button.parentElement;
         const answer = button.nextElementSibling;
-        
+
         document.querySelectorAll('.faq-item').forEach(otherItem => {
           if (otherItem !== item && otherItem.classList.contains('active')) {
             otherItem.classList.remove('active');
@@ -649,8 +1145,8 @@
     // Reveal Animations using Intersection Observer
     const revealElements = document.querySelectorAll('.reveal');
     const revealOptions = { threshold: 0.1, rootMargin: "0px 0px -50px 0px" };
-    
-    const revealOnScroll = new IntersectionObserver(function(entries, observer) {
+
+    const revealOnScroll = new IntersectionObserver(function (entries, observer) {
       entries.forEach(entry => {
         if (!entry.isIntersecting) return;
         entry.target.classList.add('active');
@@ -661,4 +1157,5 @@
     revealElements.forEach(el => revealOnScroll.observe(el));
   </script>
 </body>
+
 </html>
