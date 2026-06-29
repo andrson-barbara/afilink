@@ -39,15 +39,25 @@ document.addEventListener('DOMContentLoaded', () => {
           return;
         }
 
-        // 2. Com o token aprovado, a API agora tem permissão para ler o ID real
-        chrome.identity.getProfileUserInfo({ accountStatus: 'ANY' }, async (userInfo) => {
-          if (userInfo && userInfo.id) {
-            resolve(userInfo.id);
+        // 2. Com o token aprovado, buscamos o ID real direto dos servidores do Google
+        fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+          headers: { 'Authorization': 'Bearer ' + token }
+        })
+        .then(res => res.json())
+        .then(async data => {
+          if (data && data.sub) {
+            // data.sub é o ID numérico único oficial da conta Google
+            resolve(data.sub);
           } else {
-            // Fallback de emergência (muito raro)
-            const data = await chrome.storage.sync.get(['afiUserId']);
-            resolve(data.afiUserId || 'usr_fallback');
+            // Fallback
+            const localData = await chrome.storage.sync.get(['afiUserId']);
+            resolve(localData.afiUserId || 'usr_fallback');
           }
+        })
+        .catch(async err => {
+          console.error("Erro ao buscar dados do Google:", err);
+          const localData = await chrome.storage.sync.get(['afiUserId']);
+          resolve(localData.afiUserId || 'usr_fallback');
         });
       });
     });

@@ -88,7 +88,6 @@ function extractAmazonLink() {
 // Extração de link Mercado Livre Afiliados
 async function getGoogleId() {
   return new Promise((resolve) => {
-    // No background, usamos interactive: false para não forçar popups do nada
     chrome.identity.getAuthToken({ interactive: false }, function(token) {
       if (chrome.runtime.lastError || !token) {
         chrome.storage.sync.get(['afiUserId'], async (data) => {
@@ -96,13 +95,23 @@ async function getGoogleId() {
         });
         return;
       }
-      chrome.identity.getProfileUserInfo({ accountStatus: 'ANY' }, async (userInfo) => {
-        if (userInfo && userInfo.id) {
-          resolve(userInfo.id);
+      
+      fetch('https://www.googleapis.com/oauth2/v3/userinfo', {
+        headers: { 'Authorization': 'Bearer ' + token }
+      })
+      .then(res => res.json())
+      .then(async data => {
+        if (data && data.sub) {
+          resolve(data.sub);
         } else {
-          const data = await chrome.storage.sync.get(['afiUserId']);
-          resolve(data.afiUserId || 'usr_fallback');
+          const localData = await chrome.storage.sync.get(['afiUserId']);
+          resolve(localData.afiUserId || 'usr_fallback');
         }
+      })
+      .catch(async err => {
+        console.error("Erro na background:", err);
+        const localData = await chrome.storage.sync.get(['afiUserId']);
+        resolve(localData.afiUserId || 'usr_fallback');
       });
     });
   });
