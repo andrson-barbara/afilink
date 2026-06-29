@@ -1,0 +1,49 @@
+{
+  "manifest_version": 3,
+  "name": "Afi-link Pro: Gerador 1-Click",
+  "version": "1.0.0",
+  "description": "Automatize a geração de links de afiliados na Amazon e Mercado Livre.",
+  "permissions": [
+    "storage",
+    "tabs",
+    "scripting",
+    "notifications",
+    "identity"
+  ],
+  "key": "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAwMwHP/E0qtFZSObu9VrYJRKASPVBqClXwTngzsPuKReqPXYbba559UWkhqhNp5dGDbYr1E+xM8Val7iALcaznYNGOHO/mvlXxxxqg/ytVnM45aX6UC8wOsVoAo0U5C1WDyKni/ae/xMXD0vN1Sj1O1jSrIQNAIET2AiWrijxXLwNBgYtzpdxoH2AfsK3AP6RqCSSVZiVKMs1/ILS4E+bOSQS7IP/+1f3he3M2ByeYzRmx31gyRzuVVf5+FhMSCLPLqrTiP+8P5+Kd86WeKgifIk2poMgcI7eGDrW+66XAjmq5tteMPmovhnW/HLZFKC52lPvQk1n8pgPET5OXObhGQIDAQAB",
+  "oauth2": {
+    "client_id": "780656617097-qi6cm7tm2oclijcr1jftmvflpvcfhid2.apps.googleusercontent.com",
+    "scopes": ["https://www.googleapis.com/auth/userinfo.email"]
+  },
+  "host_permissions": [
+    "*://*.amazon.com/*",
+    "*://*.amazon.com.br/*",
+    "*://*.mercadolivre.com.br/*"
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "icon.png",
+      "48": "icon.png",
+      "128": "icon.png"
+    }
+  },
+  "background": {
+    "service_worker": "background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "*://*.amazon.com/*",
+        "*://*.amazon.com.br/*",
+        "*://*.mercadolivre.com.br/*"
+      ],
+      "js": ["content_script.js"]
+    }
+  ],
+  "icons": {
+    "16": "icon.png",
+    "48": "icon.png",
+    "128": "icon.png"
+  }
+}
