@@ -354,6 +354,10 @@
     
     .btn-full { width: 100%; }
 
+    /* SECURITY */
+    .security { padding: 100px 0; position: relative; z-index: 10; }
+    .security-inner { padding: 48px; display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: center; }
+
     /* FAQ */
     .faq { padding: 120px 0; border-top: 1px solid rgba(255,255,255,0.05); position: relative; z-index: 10; }
     .faq-list { max-width: 800px; margin: 60px auto 0; }
@@ -385,6 +389,8 @@
       .price-card.pro { transform: none; margin: 20px 0; }
       .section-header { text-align: center; margin: 0 auto 60px; }
       .hero-media { height: 400px; }
+      .security-inner { grid-template-columns: 1fr; text-align: center; gap: 24px; padding: 32px 24px; }
+      .security-inner .check-list { justify-content: center; }
     }
   </style>
 </head>
@@ -497,9 +503,9 @@
   </section>
 
   <!-- Security -->
-  <section class="security" style="padding: 100px 0; position: relative; z-index: 10;">
+  <section class="security">
     <div class="container">
-      <div class="security-inner glass-panel reveal" style="padding: 48px; display: grid; grid-template-columns: auto 1fr; gap: 40px; align-items: center;">
+      <div class="security-inner glass-panel reveal">
         <div>
           <svg xmlns="http://www.w3.org/2000/svg" width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="var(--neon-green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path><polyline points="9 12 11 14 15 10"></polyline></svg>
         </div>
