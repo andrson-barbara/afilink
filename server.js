@@ -124,6 +124,10 @@ app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'index.html'));
 });
 
+app.get('/privacidade.html', (req, res) => {
+  res.sendFile(path.join(__dirname, 'privacidade.html'));
+});
+
 app.listen(port, () => {
   console.log(`Backend rodando na porta ${port}`);
 });
